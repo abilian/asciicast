@@ -17,7 +17,7 @@ This package provides a Python API to generate
 
 ## Demo
 
-<script src="https://asciinema.org/a/wlIj0hTLZVWnjGdIsiB730KT2.js" id="asciicast-wlIj0hTLZVWnjGdIsiB730KT2" async="true"></script>
+[![asciicast](https://asciinema.org/a/wlIj0hTLZVWnjGdIsiB730KT2.svg)](https://asciinema.org/a/wlIj0hTLZVWnjGdIsiB730KT2)
 
 ## Usage
 
