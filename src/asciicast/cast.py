@@ -69,7 +69,7 @@ class Cast:
         start_ts = 0.0
 
         for line in cast.splitlines():
-            if not line.startswith(b'['):
+            if not line.startswith(b"["):
                 continue
             ts, _, data = json.loads(line)
             if data.startswith("## start "):
@@ -80,15 +80,15 @@ class Cast:
                 uid = data.split(" ", 2)[2].strip()
                 assert cmd.uid == uid
                 cmd = None
-            else:
-                if cmd is not None:
-                    cmd.parse(ts-start_ts, data)
+            elif cmd is not None:
+                cmd.parse(ts - start_ts, data)
 
     def _get_cmd_by_uid(self, uid: str) -> Command:
         for cmd in self.commands:
             if cmd.uid == uid:
                 return cmd
-        raise ValueError(f"Command with uid {uid} not found")
+        msg = f"Command with uid {uid} not found"
+        raise ValueError(msg)
 
     def _render(self):
         with Writer("test.cast") as writer:
@@ -171,12 +171,12 @@ class Type(Command):
             writer.write_event("o", c, TYPING_DELAY)
         writer.write_event("o", "\n\r", TYPING_DELAY)
 
-        for ts, data in self.outputs:
+        for _ts, data in self.outputs:
             writer.write_event("o", data, 0.1)
 
     def parse(self, ts: float, data: str):
         for line in data.splitlines():
-            self.outputs.append((ts, line+"\r\n"))
+            self.outputs.append((ts, line + "\r\n"))
 
 
 @define
